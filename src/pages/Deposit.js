@@ -3,7 +3,6 @@ import { useState, useEffect, useContext } from 'react';
 
 import { UserContext, UserDispatchContext } from '../utils/context';
 import Card from '../components/Card.js';
-import Logout from '../components/Logout.js';
 
 function Deposit(){
 
@@ -50,6 +49,7 @@ function Deposit(){
   return (
     
     <div id="deposit-container">
+
     <Card
       bgcolor="dark"
       header="Deposit"
@@ -66,7 +66,7 @@ function Deposit(){
         <>You're not logged in.</>
       )}
     />
-    <Logout/>
+    
     </div>
 
   )

@@ -1,7 +1,13 @@
 
 import { useEffect, useState, useContext } from 'react';
 
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import Row from 'react-bootstrap/Row';
 import '../styles/NavBar.css';
+
+import Logout from '../components/Logout.js';
 
 import { UserContext } from '../utils/context';
 
@@ -19,32 +25,23 @@ function NavBar(){
 
   return(
 
-    <div id="nav-container">
-      <nav className="navbar navbar-expand navbar-light bg-light">
-
-        <a className="navbar-brand" href="#">Bad Bank</a>
-        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon"></span>
-        </button>
-
-        <div className="collapse navbar-collapse" id="navbarNav">
-          {auth &&
-          <ul className="navbar-nav">
-            <li className="nav-item">
-              <a className="nav-link" href="#/account/">Account</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#/deposit/">Deposit</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#/withdraw/">Withdraw</a>
-            </li>
-          </ul>
+    <Navbar bg="primary" data-bs-theme="dark">
+    <Container>
+      <Navbar.Brand href="#">Bad Bank</Navbar.Brand>
+      <Navbar.Toggle aria-controls="basic-navbar-nav"/>
+      <Navbar.Collapse id="basic-navbar-nav">
+          {auth && 
+          <Nav className="me-auto">
+              <Nav.Link href="#/account/">Account</Nav.Link>
+              <Nav.Link href="#/deposit/">Deposit</Nav.Link>
+              <Nav.Link href="#/withdraw/">Withdraw</Nav.Link>
+              <Logout/>
+          </Nav>
           }
-        </div>
-        
-      </nav>
-    </div>
+      </Navbar.Collapse>
+    </Container>
+    </Navbar>
+
   );
 
 }

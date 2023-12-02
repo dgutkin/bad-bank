@@ -3,7 +3,6 @@ import { useState, useContext, useEffect } from 'react';
 
 import { UserContext, UserDispatchContext } from '../utils/context';
 import Card from '../components/Card.js';
-import Logout from '../components/Logout.js';
 
 function Withdraw(){
 
@@ -48,6 +47,7 @@ function Withdraw(){
   return (
     
     <div id="withdraw-container">
+
     <Card
       bgcolor="dark"
       header="Withdraw"
@@ -64,7 +64,7 @@ function Withdraw(){
         <>You're not logged in.</>
       )}
     />
-    <Logout/>
+    
     </div>
 
   );

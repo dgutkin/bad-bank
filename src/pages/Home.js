@@ -1,25 +1,37 @@
 
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
-import Card from '../components/Card.js';
+
+import '../styles/Home.css';
 
 function Home(){
 
   return (
-    <div className="home-container">
-      <Card
-      txtcolor="black"
-      header="Bad Bank Home"
-      title="Welcome to the bank!"
-      text="Manage your money without confidence."
-      body={(<img src="bank.png" className="img-fluid" alt="Responsive image"/>)}
-      />   
-      <Button href="#/createaccount">
-        Create Account
-      </Button>
-      <Button href="#/login">
-        Login
-      </Button>
-    </div>
+
+    <Container id="home-container">
+      
+      <Row>
+        <Col className="home-title-col">
+          <h3>Welcome to Bad Bank!</h3>
+          <p>Manage your money without confidence.</p>
+        </Col>
+        <Col>
+          <Row className="home-button-row">
+            <Button href="#/login">
+              Login
+            </Button>
+          </Row>
+          <Row className="home-button-row">
+            <Button href="#/createaccount">
+              Create Account
+            </Button>
+          </Row>
+        </Col>
+      </Row>
+
+    </Container>
      
   );
   
