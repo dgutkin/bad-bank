@@ -1,44 +1,47 @@
 
-import React from 'react';
+import { useState, useEffect, useContext } from 'react';
 
-import { UserContext } from '../utils/context';
+import { UserContext, UserDispatchContext } from '../utils/context';
 import Card from '../components/Card.js';
 
 function Deposit(){
 
-  const [status, setStatus] = React.useState('');
-  const [auth, setAuth] = React.useState(false);
-  const [deposit, setDeposit] = React.useState(0);
-  const [balance, setBalance] = React.useState(0);
-  const ctx = React.useContext(UserContext);
+  const [status, setStatus] = useState('');
+  const [auth, setAuth] = useState(false);
+  const [deposit, setDeposit] = useState(0);
+  const [balance, setBalance] = useState(0);
 
-  React.useEffect(() => {
+  const userCtx = useContext(UserContext);
+  const dispatch = useContext(UserDispatchContext);
 
-    setAuth(ctx.users.reduce((accum, e) => {return accum || e.auth}, false));
-    ctx.users.map((e) => {
-      if (e.auth)
-        setBalance(e.balance);
-    });
+  useEffect(() => {
+
+    setAuth(userCtx.auth);
+    setBalance(userCtx.balance);
     
   }, []);
 
   const validate = (field, label) => {
+
     if (!field || field <= 0) {
       setStatus("invalid deposit");
       setTimeout(() => {return setStatus('');}, 3000);
       return false;
     }
     return true;
+
   }
 
   const handleConfirm = () => {
 
     if (!validate(deposit, 'deposit')) return;
 
-    ctx.users.map((e) => {
-      if (e.auth)
-        e.balance = Number(e.balance) + Number(deposit);
-        setBalance(e.balance);
+    setBalance(balance + Number(deposit));
+
+    const updatedUser = {...userCtx, balance: Number(userCtx.balance) + Number(deposit)}
+    dispatch({
+      type: "changed",
+      user: updatedUser
     });
 
   }

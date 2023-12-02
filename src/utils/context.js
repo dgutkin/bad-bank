@@ -6,3 +6,4 @@ import { createContext } from 'react';
 // const HashRouter  = ReactRouterDOM.HashRouter;
 export const UserContext = createContext(null);
 export const UserData = createContext(null);
+export const UserDispatchContext = createContext(null);

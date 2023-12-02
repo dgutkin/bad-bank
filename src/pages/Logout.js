@@ -1,13 +1,19 @@
 
 import { useState, useContext, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-import { UserContext } from '../utils/context';
+
+import { UserContext, UserDispatchContext } from '../utils/context';
 import Card from '../components/Card.js';
 
 function Logout() {
     // this shouldn't be a page, but rather a button that updates context and links to home
     const [auth, setAuth] = useState(false);
-    const { userCtx, setUserCtx }= useContext(UserContext);
+
+    const userCtx = useContext(UserContext);
+    const dispatch = useContext(UserDispatchContext);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
 
@@ -19,11 +25,14 @@ function Logout() {
     const handleLogout = () => {
 
         setAuth(false);
-        // ctx.users.map((e) => {
-        //     if (e.auth)
-        //       e.auth = false;
-        //   });
-        setUserCtx({...userCtx, auth: false});
+        
+        const changedUser = {...userCtx, auth: false};
+        dispatch({
+            type: 'changed',
+            user: changedUser
+        });
+
+        navigate("/");
 
     }
 

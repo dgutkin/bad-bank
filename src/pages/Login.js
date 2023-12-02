@@ -1,18 +1,22 @@
 
 import { useState, useContext, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-import { UserData, UserContext } from '../utils/context';
+import { UserData, UserContext, UserDispatchContext } from '../utils/context';
 import Card from '../components/Card.js';
 
-function Login(){
+function Login() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [status, setStatus] = useState("");
   const [auth, setAuth] = useState(false);
 
+  const navigate = useNavigate();
+
   const { users } = useContext(UserData);
-  const { userCtx, setUserCtx } = useContext(UserContext);
+  const userCtx = useContext(UserContext);
+  const dispatch = useContext(UserDispatchContext);
 
   useEffect(() => {
 
@@ -26,23 +30,22 @@ function Login(){
     let user = users.filter((u) => {return u.email == email})[0];
     
     if (user.password === password) {
+
       setAuth(true);
-      // ctx.users.map((e) => {
-      //   if (e.email === email)
-      //     e.auth = true;
-      // });
-      // ctx.push({
-      //   name: user.name, 
-      //   email: user.email, 
-      //   password: user.password, 
-      //   balance: user.balance, 
-      //   auth: true
-      // });
+      
       const userDetails = {name: user.name, email: user.email, password: user.password, balance: user.balance, auth: true};
-      console.log(userCtx);
-      setUserCtx(userDetails);
+      
+      dispatch({
+        type: 'changed',
+        user: userDetails
+      });
+
+      navigate("/account/");
+
     } else {
+
       setStatus("Login failed");
+
     }
 
   }
@@ -53,17 +56,16 @@ function Login(){
       bgcolor="dark"
       header="Login"
       status={status}
-      body={!auth ? (
+      body={
         <>
           Email address<br/>
           <input type="input" className="form-control" id="email" placeholder="Enter email" value={email} onChange={e => setEmail(e.currentTarget.value)}/><br/>
           Password<br/>
           <input type="password" className="form-control" id="password" placeholder="Enter password" value={password} onChange={e => setPassword(e.currentTarget.value)}/><br/>
+          {/* <Link to="/balance/" className="btn btn-light" onClick={handleLogin}>Login</Link> */}
           <button type="submit" className="btn btn-light" onClick={handleLogin}>Login</button>
         </>
-      ) : (
-        <>You're logged in.</>
-      )}
+      }
     />
 
   );

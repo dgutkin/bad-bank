@@ -1,24 +1,23 @@
 
-import React from 'react';
+import { useState, useContext, useEffect } from 'react';
 
-import { UserContext } from '../utils/context';
+import { UserContext, UserDispatchContext } from '../utils/context';
 import Card from '../components/Card.js';
 
 function Withdraw(){
 
-  const [status, setStatus] = React.useState('');
-  const [auth, setAuth] = React.useState(false);
-  const [withdrawal, setWithdrawal] = React.useState(0);
-  const [balance, setBalance] = React.useState(0);
-  const ctx = React.useContext(UserContext);
+  const [status, setStatus] = useState('');
+  const [auth, setAuth] = useState(false);
+  const [withdrawal, setWithdrawal] = useState(0);
+  const [balance, setBalance] = useState(0);
 
-  React.useEffect(() => {
+  const userCtx = useContext(UserContext);
+  const dispatch = useContext(UserDispatchContext);
 
-    setAuth(ctx.users.reduce((accum, e) => {return accum || e.auth}, false));
-    ctx.users.map((e) => {
-      if (e.auth)
-        setBalance(e.balance);
-    });
+  useEffect(() => {
+
+    setAuth(userCtx.auth);
+    setBalance(userCtx.balance);
     
   }, []);
 
@@ -35,10 +34,12 @@ function Withdraw(){
 
     if (!validate(withdrawal, 'withdrawal')) return;
 
-    ctx.users.map((e) => {
-      if (e.auth)
-        e.balance = Number(e.balance) - Number(withdrawal);
-        setBalance(e.balance);
+    setBalance(balance - Number(withdrawal));
+
+    const updatedUser = {...userCtx, balance: Number(userCtx.balance) - Number(withdrawal)}
+    dispatch({
+      type: "changed",
+      user: updatedUser
     });
 
   }

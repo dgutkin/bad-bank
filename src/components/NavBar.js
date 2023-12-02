@@ -1,5 +1,5 @@
 
-import { useEffect, useState, useContext, useRef } from 'react';
+import { useEffect, useState, useContext } from 'react';
 
 import '../styles/NavBar.css';
 
@@ -9,7 +9,7 @@ function NavBar(){
 
   const [auth, setAuth] = useState(false);
 
-  const { userCtx, setUserCtx } = useContext(UserContext);
+  const userCtx = useContext(UserContext);
 
   //const loggedIn = users.reduce((accum, e) => {return accum || e.auth}, false)
 
@@ -36,20 +36,17 @@ function NavBar(){
             <a className="nav-link" href="#/login/">Login</a>
           </li> */}
           <li className="nav-item">
+            <a className="nav-link" href="#/account/">Account</a>
+          </li>
+          <li className="nav-item">
             <a className="nav-link" href="#/deposit/">Deposit</a>
           </li>
           <li className="nav-item">
             <a className="nav-link" href="#/withdraw/">Withdraw</a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#/balance/">Balance</a>
-          </li>
-          <li className="nav-item">
             <a className="nav-link" href="#/logout/">Logout</a>
           </li>
-          <li className="nav-item">
-            <a className="nav-link" href="#/alldata/">AllData</a>
-          </li>          
         </ul>
         }
       </div>
