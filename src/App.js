@@ -13,8 +13,6 @@ import Login from './pages/Login.js';
 import Deposit from './pages/Deposit.js';
 import Withdraw from './pages/Withdraw.js';
 import Account from './pages/Account.js';
-import Logout from './pages/Logout.js';
-import AllData from './pages/AllData.js';
 
 function App() {
 
@@ -51,7 +49,6 @@ function App() {
               <Route path="/account/" element={<Account/>} />
               <Route path="/deposit/" element={<Deposit/>} />
               <Route path="/withdraw/" element={<Withdraw/>} />
-              <Route path="/logout/" element={<Logout/>} />
             </Routes>
 
           </UserDispatchContext.Provider>
