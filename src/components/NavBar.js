@@ -1,5 +1,23 @@
 
+import { useEffect, useState, useContext, useRef } from 'react';
+
+import '../styles/NavBar.css';
+
+import { UserContext } from '../utils/context';
+
 function NavBar(){
+
+  const [auth, setAuth] = useState(false);
+
+  const { userCtx, setUserCtx } = useContext(UserContext);
+
+  //const loggedIn = users.reduce((accum, e) => {return accum || e.auth}, false)
+
+  useEffect(() => {
+
+    setAuth(userCtx.auth);
+
+  }, [userCtx]);
 
   return(
     <>
@@ -9,13 +27,14 @@ function NavBar(){
         <span className="navbar-toggler-icon"></span>
       </button>
       <div className="collapse navbar-collapse" id="navbarNav">
+        {auth &&
         <ul className="navbar-nav">
-          <li className="nav-item">
+          {/* <li className="nav-item">
             <a className="nav-link" href="#/createaccount/">Create Account</a>
           </li>
           <li className="nav-item">
             <a className="nav-link" href="#/login/">Login</a>
-          </li>
+          </li> */}
           <li className="nav-item">
             <a className="nav-link" href="#/deposit/">Deposit</a>
           </li>
@@ -32,6 +51,7 @@ function NavBar(){
             <a className="nav-link" href="#/alldata/">AllData</a>
           </li>          
         </ul>
+        }
       </div>
     </nav>
     </>

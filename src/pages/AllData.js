@@ -1,11 +1,11 @@
 
-import React from 'react';
+import { useContext } from 'react';
 
 import {UserContext} from '../utils/context.js';
 
 function AllData(){
 
-  const ctx = React.useContext(UserContext);
+  const ctx = useContext(UserContext);
   return (
     <>
     <h5>All Data in Store</h5>
