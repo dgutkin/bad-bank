@@ -92,19 +92,20 @@ function userReducer(user, action) {
 }
 
 function userDataReducer(userData, action) {
-  
+  console.log("dispatch");
   switch(action.type) {
 
-    case 'changed': {
+    case 'changed':
       return action.userData;
-    }
-    case 'added': {
-      return userData.users.push(action.userData);
-    }
-    default: {
-      throw Error("Unknown action: " + action.type);
-    }
 
+    case 'added':
+      let users = userData.users;
+      users = [...users, action.userData];
+      return {users: users}
+
+    default: 
+      throw Error("Unknown action: " + action.type);
+      
   }
 
 }

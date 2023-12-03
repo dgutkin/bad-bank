@@ -1,6 +1,7 @@
 
 import { useState, useContext } from 'react';
 import Container from 'react-bootstrap/Container';
+import { useNavigate } from 'react-router-dom';
 
 import { UserData, UserDataDispatch } from '../utils/context';
 
@@ -18,7 +19,9 @@ function CreateAccount(){
   const [auth, setAuth] = useState(false);
 
   const userData = useContext(UserData);
-  const dispatch = useContext(UserDataDispatch);
+  const dispatchData = useContext(UserDataDispatch);
+
+  const navigate = useNavigate();
 
   function validate(field, label){
 
@@ -39,11 +42,12 @@ function CreateAccount(){
     if (!validate(password, 'password')) return;
 
     const userObj = {name, email, password, balance: 0};
-    console.log(userData);
-    if (userData.users.includes(userObj)) {
+    
+    if (userData.users.reduce((accum, current) => {return accum || (current.email === email)}, false)) {
       alert('User already exists!');
+      clearForm();
     } else {
-      dispatch({type: 'added', userData: userObj});
+      dispatchData({type: 'added', userData: userObj});
       setShow(false);
     }
 
@@ -57,7 +61,7 @@ function CreateAccount(){
   }
 
   return (
-    // use useNavigate to have the Login direct to #/login/
+    
     <Container fluid id="create-account-container">
       <Card
         bgcolor="dark"
@@ -75,9 +79,9 @@ function CreateAccount(){
                 </>
               ):(
                 <>
-                <h5>Success</h5><br/>
+                <h5>New account created</h5><br/>
                 <button type="submit" className="btn btn-light" onClick={clearForm}>Add another account</button>
-                <button className="btn btn-light" href="#/login/">Login</button>
+                <button className="btn btn-light" onClick={() => {navigate("/login/")}}>Login</button>
                 </>
               )}
       />
