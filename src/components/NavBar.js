@@ -4,7 +4,6 @@ import { useEffect, useState, useContext } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import Row from 'react-bootstrap/Row';
 import '../styles/NavBar.css';
 
 import Logout from '../components/Logout.js';
@@ -26,8 +25,8 @@ function NavBar(){
   return(
 
     <Navbar bg="primary" data-bs-theme="dark">
-    <Container>
-      <Navbar.Brand href="#">Bad Bank</Navbar.Brand>
+    <Container fluid>
+      <Navbar.Brand id="navbar-title" href="#">Bad Bank</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav"/>
       <Navbar.Collapse id="basic-navbar-nav">
           {auth && 

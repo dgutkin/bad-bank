@@ -1,5 +1,5 @@
 
-.navbar {
-    padding-left: 1rem;
-    background: #35b234;
+#navbar-title {
+    padding-left: 2rem;
+    font-weight: 700;
 }

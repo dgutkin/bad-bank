@@ -1,6 +1,12 @@
 
 #home-container {
-    padding-top: 3rem;
+    padding: 0rem;
+}
+
+#home-title-container {
+    padding-top: 2rem;
+    padding-left: 5rem;
+    padding-right: 5rem;
 }
 
 .home-button-row {
@@ -10,4 +16,9 @@
 
 .home-title-col {
     padding-top: 3rem;
+}
+
+.carousel-img {
+    width: 100%;
+    height: 30rem;
 }
