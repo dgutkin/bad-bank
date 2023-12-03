@@ -24,7 +24,7 @@ function NavBar(){
 
   return(
 
-    <Navbar bg="primary" data-bs-theme="dark">
+    <Navbar bg="dark" data-bs-theme="dark">
     <Container fluid>
       <Navbar.Brand id="navbar-title" href="#">Bad Bank</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav"/>
@@ -34,6 +34,7 @@ function NavBar(){
               <Nav.Link href="#/account/">Account</Nav.Link>
               <Nav.Link href="#/deposit/">Deposit</Nav.Link>
               <Nav.Link href="#/withdraw/">Withdraw</Nav.Link>
+              <Nav.Link href="#/seedata/">See Data</Nav.Link>
               <Logout/>
           </Nav>
           }
