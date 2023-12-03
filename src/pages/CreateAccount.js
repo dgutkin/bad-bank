@@ -68,7 +68,7 @@ function CreateAccount(){
         header="Create Account"
         status={status}
         body={show ? (  
-                <>
+                <div>
                 <p>Name</p>
                 <input type="input" className="form-control" id="name" placeholder="Enter name" value={name} onChange={e => setName(e.currentTarget.value)} /><br/>
                 <p>Email Address</p>
@@ -76,13 +76,13 @@ function CreateAccount(){
                 <p>Password</p>
                 <input type="password" className="form-control" id="password" placeholder="Enter password" value={password} onChange={e => setPassword(e.currentTarget.value)}/><br/>
                 <button type="submit" className="btn btn-light" onClick={handleCreate}>Create Account</button>
-                </>
+                </div>
               ):(
-                <>
-                <h5>New account created</h5><br/>
-                <button type="submit" className="btn btn-light" onClick={clearForm}>Add another account</button>
-                <button className="btn btn-light" onClick={() => {navigate("/login/")}}>Login</button>
-                </>
+                <div>
+                  <h5>New account created</h5><br/>
+                  <button type="submit" className="btn btn-light" onClick={clearForm}>Add another account</button>
+                  <button className="btn btn-light" onClick={() => {navigate("/login/")}}>Login</button>
+                </div>
               )}
       />
     </Container>

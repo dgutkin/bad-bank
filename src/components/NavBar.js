@@ -26,7 +26,7 @@ function NavBar(){
 
     <Navbar bg="dark" data-bs-theme="dark">
     <Container fluid>
-      <Navbar.Brand id="navbar-title" href="#">Bad Bank</Navbar.Brand>
+      <Navbar.Brand id="navbar-title" href={auth ? "#/account/" : "#"}>Bad Bank</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav"/>
       <Navbar.Collapse id="basic-navbar-nav">
           {auth && 
