@@ -24,14 +24,13 @@ function Login() {
 
   useEffect(() => {
 
-    //setAuth(ctx.users.reduce((accum, e) => {return (accum || e.auth)}, false));
     setAuth(userCtx.auth)
 
-  }, []);
+  }, [userCtx]);
 
   const handleLogin = () => {
     
-    let user = users.filter((u) => {return u.email == email})[0];
+    let user = users.filter((u) => {return u.email === email})[0];
     
     if (user.password === password) {
 

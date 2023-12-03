@@ -24,12 +24,12 @@ function Home(){
           </Col>
           <Col sm={3}>
             <Row className="home-button-row">
-              <Button href="#/login">
+              <Button variant="dark" href="#/login">
                 Login
               </Button>
             </Row>
             <Row className="home-button-row">
-              <Button href="#/createaccount">
+              <Button variant="dark" href="#/createaccount">
                 Create Account
               </Button>
             </Row>

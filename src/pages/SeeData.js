@@ -8,15 +8,17 @@ import '../styles/SeeData.css';
 
 function SeeData() {
 
-  const userData = useContext(UserData);
+  const { users } = useContext(UserData);
 
   return (
 
     <Container fluid id="see-data-container">
 
-        <p>
-            {JSON.stringify(userData.users)}
-        </p>
+        
+          <p>
+              {JSON.stringify(users)}
+          </p>
+        
 
     </Container>
   )

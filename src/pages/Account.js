@@ -1,8 +1,14 @@
 
 import { useState, useEffect, useContext } from 'react';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
 
 import { UserContext } from '../utils/context.js';
 import Card from '../components/Card.js';
+
+import '../styles/Account.css';
 
 function Account(){
   
@@ -21,9 +27,34 @@ function Account(){
 
   return (
 
-    <div id="account-container">
+    <Container fluid id="account-container">
 
-      <Card
+        {
+          auth ? (
+            <Row>
+            <Col>
+              <h3>Welcome to Bad Bank.</h3>
+              <p>Banking has never been worse.</p>
+              <br/>
+              <Card
+                bgcolor="light"
+                txtcolor="dark"
+                header="Balance"
+                status={status}
+                body={balance}
+              />
+            </Col>
+            <Col>
+              <Button variant="dark" href="#/deposit/">Deposit</Button>
+              <Button variant="dark" href="#/withdraw/">Withdraw</Button>
+            </Col>
+            </Row>
+          ) : (
+            <p>Please Login.</p>
+          )
+        }
+
+      {/* <Card
         bgcolor="dark"
         header="Account"
         status={status}
@@ -35,9 +66,9 @@ function Account(){
         ) : (
           <>You're not logged in.</>
         )}
-      />
+      /> */}
 
-    </div>
+    </Container>
   )
 }
 

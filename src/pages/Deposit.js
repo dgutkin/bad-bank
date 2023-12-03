@@ -1,7 +1,8 @@
 
 import { useState, useEffect, useContext } from 'react';
+import Container from 'react-bootstrap/Container';
 
-import { UserContext, UserDispatchContext } from '../utils/context';
+import { UserContext, UserDataDispatch, UserData, UserDispatchContext } from '../utils/context';
 import Card from '../components/Card.js';
 
 function Deposit(){
@@ -13,6 +14,8 @@ function Deposit(){
 
   const userCtx = useContext(UserContext);
   const dispatch = useContext(UserDispatchContext);
+  const { users } = useContext(UserData);
+  const dispatchData = useContext(UserDataDispatch);
 
   useEffect(() => {
 
@@ -39,16 +42,23 @@ function Deposit(){
     setBalance(balance + Number(deposit));
 
     const updatedUser = {...userCtx, balance: Number(userCtx.balance) + Number(deposit)}
+
     dispatch({
       type: "changed",
       user: updatedUser
     });
 
+    const updatedUsers = users.map((item) => {if (item.email === userCtx.email) return {...item, balance: updatedUser.balance}});
+    dispatchData({
+      type: "changed",
+      userData: {users: updatedUsers}
+    })
+
   }
 
   return (
     
-    <div id="deposit-container">
+    <Container id="deposit-container">
 
     <Card
       bgcolor="dark"
@@ -63,11 +73,11 @@ function Deposit(){
           <button type="submit" className="btn btn-light" onClick={handleConfirm}>Confirm</button>
         </>
       ) : (
-        <>You're not logged in.</>
+        <>Please login.</>
       )}
     />
     
-    </div>
+    </Container>
 
   )
 }

@@ -16,7 +16,6 @@ function CreateAccount(){
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [auth, setAuth] = useState(false);
 
   const userData = useContext(UserData);
   const dispatchData = useContext(UserDataDispatch);

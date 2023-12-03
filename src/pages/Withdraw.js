@@ -1,7 +1,7 @@
 
 import { useState, useContext, useEffect } from 'react';
 
-import { UserContext, UserDispatchContext } from '../utils/context';
+import { UserContext, UserDispatchContext, UserData, UserDataDispatch } from '../utils/context';
 import Card from '../components/Card.js';
 
 function Withdraw(){
@@ -13,6 +13,8 @@ function Withdraw(){
 
   const userCtx = useContext(UserContext);
   const dispatch = useContext(UserDispatchContext);
+  const { users } = useContext(UserData);
+  const dispatchData = useContext(UserDataDispatch);
 
   useEffect(() => {
 
@@ -41,6 +43,12 @@ function Withdraw(){
       type: "changed",
       user: updatedUser
     });
+
+    const updatedUsers = users.map((item) => {if (item.email === userCtx.email) return {...item, balance: updatedUser.balance}});
+    dispatchData({
+      type: "changed",
+      userData: {users: updatedUsers}
+    })
 
   }
 
