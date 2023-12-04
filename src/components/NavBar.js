@@ -4,6 +4,7 @@ import { useEffect, useState, useContext } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+
 import '../styles/NavBar.css';
 
 import Logout from '../components/Logout.js';
@@ -30,12 +31,12 @@ function NavBar(){
       <Navbar.Toggle aria-controls="basic-navbar-nav"/>
       <Navbar.Collapse id="basic-navbar-nav">
           {auth && 
-          <Nav className="me-auto">
-              <Nav.Link href="#/account/">Account</Nav.Link>
-              <Nav.Link href="#/deposit/">Deposit</Nav.Link>
-              <Nav.Link href="#/withdraw/">Withdraw</Nav.Link>
-              <Nav.Link href="#/seedata/">See Data</Nav.Link>
-              <Logout/>
+          <Nav className="container-fluid me-auto">
+              <Nav.Link className="my-auto" href="#/account/">Account</Nav.Link>
+              <Nav.Link className="my-auto" href="#/deposit/">Deposit</Nav.Link>
+              <Nav.Link className="my-auto" href="#/withdraw/">Withdraw</Nav.Link>
+              <Nav.Link className="my-auto" href="#/seedata/">See Data</Nav.Link>
+              <Nav.Link className="ms-auto"><Logout id="logout"/></Nav.Link>
           </Nav>
           }
       </Navbar.Collapse>
