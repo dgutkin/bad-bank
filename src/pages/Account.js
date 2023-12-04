@@ -45,28 +45,18 @@ function Account(){
               />
             </Col>
             <Col>
-              <Button variant="dark" href="#/deposit/">Deposit</Button>
-              <Button variant="dark" href="#/withdraw/">Withdraw</Button>
+              <Row>
+                <Button className="account-button" variant="dark" href="#/deposit/">Deposit</Button>
+              </Row>
+              <Row>
+                <Button className="account-button" variant="dark" href="#/withdraw/">Withdraw</Button>
+              </Row>
             </Col>
             </Row>
           ) : (
             <p>Please Login.</p>
           )
         }
-
-      {/* <Card
-        bgcolor="dark"
-        header="Account"
-        status={status}
-        body={auth ? (
-          <>
-            Current Balance<br/>
-            <p>{balance}</p>
-          </>
-        ) : (
-          <>You're not logged in.</>
-        )}
-      /> */}
 
     </Container>
   )

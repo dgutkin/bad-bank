@@ -4,5 +4,10 @@
 }
 
 .card {
-    max-width: 38rem;
+    max-width: 32rem;
+}
+
+.account-button {
+    max-width: 10rem;
+    margin: 1rem;
 }

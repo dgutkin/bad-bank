@@ -1,9 +1,13 @@
 
 import { useState, useEffect, useContext } from 'react';
 import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 import { UserContext, UserDataDispatch, UserData, UserDispatchContext } from '../utils/context';
 import Card from '../components/Card.js';
+
+import '../styles/Deposit.css';
 
 function Deposit(){
 
@@ -59,24 +63,34 @@ function Deposit(){
   return (
     
     <Container id="deposit-container">
-
-    <Card
-      bgcolor="dark"
-      header="Deposit"
-      status={status}
-      body={auth ? (
-        <>
-          Current Balance<br/>
-          <p>{balance}</p>
-          Deposit Amount<br/>
-          <input type="input" className="form-control" id="deposit" placeholder="Enter deposit" value={deposit} onChange={e => setDeposit(e.currentTarget.value)}/><br/>
-          <button type="submit" className="btn btn-light" onClick={handleConfirm}>Confirm</button>
-        </>
+      {auth ? (
+      <Row>
+        <Col>
+          <Card
+            bgcolor="light"
+            txtcolor="dark"
+            header="Balance"
+            status={status}
+            body={balance}
+          />
+        </Col>
+        <Col>
+          <Card
+            bgcolor="dark"
+            header="Deposit"
+            status={status}
+            body={(
+              <>
+                Deposit Amount<br/>
+                <input type="input" className="form-control" id="deposit" placeholder="Enter deposit" value={deposit} onChange={e => setDeposit(e.currentTarget.value)}/><br/>
+                <button type="submit" className="btn btn-light" onClick={handleConfirm}>Confirm</button>
+              </>)}
+          />
+        </Col>
+      </Row>
       ) : (
-        <>Please login.</>
+        <p>Please login.</p>
       )}
-    />
-    
     </Container>
 
   )

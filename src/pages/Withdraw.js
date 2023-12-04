@@ -1,8 +1,13 @@
 
 import { useState, useContext, useEffect } from 'react';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 import { UserContext, UserDispatchContext, UserData, UserDataDispatch } from '../utils/context';
 import Card from '../components/Card.js';
+
+import '../styles/Withdraw.css';
 
 function Withdraw(){
 
@@ -54,26 +59,38 @@ function Withdraw(){
 
   return (
     
-    <div id="withdraw-container">
+    <Container id="withdraw-container">
 
-    <Card
-      bgcolor="dark"
-      header="Withdraw"
-      status={status}
-      body={auth ? (
-        <>
-          Current Balance<br/>
-          <p>{balance}</p>
-          Withdrawal Amount<br/>
-          <input type="input" className="form-control" id="withdrawal" placeholder="Enter withdrawal" value={withdrawal} onChange={e => setWithdrawal(e.currentTarget.value)}/><br/>
-          <button type="submit" className="btn btn-light" onClick={handleConfirm}>Confirm</button>
-        </>
+      {auth ? (
+      <Row>
+        <Col>
+          <Card
+            bgcolor="light"
+            txtcolor="dark"
+            header="Balance"
+            status={status}
+            body={balance}
+          />
+        </Col>
+        <Col>
+          <Card
+            bgcolor="dark"
+            header="Withdraw"
+            status={status}
+            body={(
+              <>
+                Withdraw Amount<br/>
+                <input type="input" className="form-control" id="withdraw" placeholder="Enter withdrawal" value={withdrawal} onChange={e => setWithdrawal(e.currentTarget.value)}/><br/>
+                <button type="submit" className="btn btn-light" onClick={handleConfirm}>Confirm</button>
+              </>)}
+          />
+        </Col>
+      </Row>
       ) : (
-        <>You're not logged in.</>
+        <p>Please login.</p>
       )}
-    />
-    
-    </div>
+
+    </Container>
 
   );
 }
