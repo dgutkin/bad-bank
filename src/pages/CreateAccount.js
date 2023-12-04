@@ -23,13 +23,16 @@ function CreateAccount(){
   const navigate = useNavigate();
 
   function validate(field, label){
-
+      
       if (!field) {
         setStatus('Error: ' + label);
         setTimeout(() => setStatus(''), 3000);
         return false;
+      } else if ((label == 'email') && (!field.includes('@') || !field.includes('.com'))){
+        setStatus('Error: ' + label);
+        setTimeout(() => setStatus(''), 3000);
+        return false;
       }
-
       return true;
 
   }
@@ -71,7 +74,7 @@ function CreateAccount(){
                 <p>Name</p>
                 <input type="input" className="form-control" id="name" placeholder="Enter name" value={name} onChange={e => setName(e.currentTarget.value)} /><br/>
                 <p>Email Address</p>
-                <input type="input" className="form-control" id="email" placeholder="Enter email" value={email} onChange={e => setEmail(e.currentTarget.value)}/><br/>
+                <input type="email" className="form-control" id="email" placeholder="Enter email" value={email} onChange={e => setEmail(e.currentTarget.value)}/><br/>
                 <p>Password</p>
                 <input type="password" className="form-control" id="password" placeholder="Enter password" value={password} onChange={e => setPassword(e.currentTarget.value)}/><br/>
                 <button type="submit" className="btn btn-light" onClick={handleCreate}>Create Account</button>

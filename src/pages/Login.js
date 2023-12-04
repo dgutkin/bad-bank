@@ -28,14 +28,29 @@ function Login() {
 
   }, [userCtx]);
 
+  function validate(field, label) {
+    if (!field) {
+      setStatus('Error: ' + label);
+      setTimeout(() => setStatus(''), 3000);
+      return false;
+    }
+    return true;
+  }
+
   const handleLogin = () => {
     
+    if (!validate(email, 'email')) return;
+    if (!validate(password, 'password')) return;
+
     let user = users.filter((u) => {return u.email === email})[0];
+    if (!user) {
+      alert('Username does not exist, create a new account.');
+      return;
+    }
     
     if (user.password === password) {
 
       setAuth(true);
-      
       const userDetails = {name: user.name, email: user.email, password: user.password, balance: user.balance, auth: true};
       
       dispatch({
@@ -47,7 +62,7 @@ function Login() {
 
     } else {
 
-      setStatus("Login failed");
+      setStatus("Cannot authenticate.");
 
     }
 
@@ -63,7 +78,7 @@ function Login() {
         body={
           <div>
             Email address<br/>
-            <input type="input" className="form-control" id="email" placeholder="Enter email" value={email} onChange={e => setEmail(e.currentTarget.value)}/><br/>
+            <input type="email" className="form-control" id="email" placeholder="Enter email" value={email} onChange={e => setEmail(e.currentTarget.value)}/><br/>
             Password<br/>
             <input type="password" className="form-control" id="password" placeholder="Enter password" value={password} onChange={e => setPassword(e.currentTarget.value)}/><br/>
             <button type="submit" className="btn btn-light" onClick={handleLogin}>Login</button>
