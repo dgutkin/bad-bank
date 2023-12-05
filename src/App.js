@@ -4,7 +4,7 @@ import { HashRouter, Routes, Route } from 'react-router-dom';
 
 import './styles/App.css';
 
-import { UserData, UserDataDispatch, UserContext, UserDispatchContext } from './utils/context.js';
+import { UserData, UserDataDispatch, UserContext, UserContextDispatch } from './utils/context.js';
 
 import NavBar from './components/NavBar.js';
 import Home from './pages/Home.js';
@@ -48,7 +48,7 @@ function App() {
 
           <UserContext.Provider value={user}>
 
-            <UserDispatchContext.Provider value={dispatch}>
+            <UserContextDispatch.Provider value={dispatch}>
 
               <NavBar/>
 
@@ -62,7 +62,7 @@ function App() {
                 <Route path="/seedata/" element={<SeeData/>} />
               </Routes>
 
-            </UserDispatchContext.Provider>
+            </UserContextDispatch.Provider>
 
           </UserContext.Provider>
 

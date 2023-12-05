@@ -1,5 +1,6 @@
 
 function Card(props){
+  
     function classes(){
       const bg  = props.bgcolor ? ' bg-' + props.bgcolor : ' ';
       const txt = props.txtcolor ? ' text-' + props.txtcolor: ' text-white';

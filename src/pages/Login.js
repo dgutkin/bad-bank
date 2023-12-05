@@ -3,7 +3,7 @@ import { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 
-import { UserData, UserContext, UserDispatchContext } from '../utils/context';
+import { UserData, UserContext, UserContextDispatch } from '../utils/context';
 
 import Card from '../components/Card.js';
 
@@ -20,7 +20,7 @@ function Login() {
 
   const { users } = useContext(UserData);
   const userCtx = useContext(UserContext);
-  const dispatch = useContext(UserDispatchContext);
+  const dispatch = useContext(UserContextDispatch);
 
   useEffect(() => {
 
@@ -81,7 +81,7 @@ function Login() {
             <input type="email" className="form-control" id="email" placeholder="Enter email" value={email} onChange={e => setEmail(e.currentTarget.value)}/><br/>
             Password<br/>
             <input type="password" className="form-control" id="password" placeholder="Enter password" value={password} onChange={e => setPassword(e.currentTarget.value)}/><br/>
-            <button type="submit" className="btn btn-light" onClick={handleLogin}>Login</button>
+            <button type="submit" className="btn btn-light" onClick={handleLogin} role="login-button">Login</button>
           </div>
         }
       />

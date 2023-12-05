@@ -4,7 +4,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-import { UserContext, UserDispatchContext, UserData, UserDataDispatch } from '../utils/context';
+import { UserContext, UserContextDispatch, UserData, UserDataDispatch } from '../utils/context';
 import Card from '../components/Card.js';
 
 import '../styles/Withdraw.css';
@@ -17,7 +17,7 @@ function Withdraw(){
   const [balance, setBalance] = useState(0);
 
   const userCtx = useContext(UserContext);
-  const dispatch = useContext(UserDispatchContext);
+  const dispatch = useContext(UserContextDispatch);
   const { users } = useContext(UserData);
   const dispatchData = useContext(UserDataDispatch);
 
@@ -68,7 +68,6 @@ function Withdraw(){
             bgcolor="light"
             txtcolor="dark"
             header="Balance"
-            status={status}
             body={balance}
           />
         </Col>

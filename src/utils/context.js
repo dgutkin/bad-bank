@@ -5,4 +5,4 @@ export const UserData = createContext(null);
 export const UserDataDispatch = createContext(null);
 
 export const UserContext = createContext(null);
-export const UserDispatchContext = createContext(null);
+export const UserContextDispatch = createContext(null);

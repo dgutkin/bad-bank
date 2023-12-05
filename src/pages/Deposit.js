@@ -4,7 +4,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-import { UserContext, UserDataDispatch, UserData, UserDispatchContext } from '../utils/context';
+import { UserContext, UserDataDispatch, UserData, UserContextDispatch } from '../utils/context';
 import Card from '../components/Card.js';
 
 import '../styles/Deposit.css';
@@ -17,7 +17,7 @@ function Deposit(){
   const [balance, setBalance] = useState(0);
 
   const userCtx = useContext(UserContext);
-  const dispatch = useContext(UserDispatchContext);
+  const dispatch = useContext(UserContextDispatch);
   const { users } = useContext(UserData);
   const dispatchData = useContext(UserDataDispatch);
 
@@ -53,6 +53,7 @@ function Deposit(){
     });
 
     const updatedUsers = users.map((item) => {if (item.email === userCtx.email) return {...item, balance: updatedUser.balance}});
+
     dispatchData({
       type: "changed",
       userData: {users: updatedUsers}
@@ -70,7 +71,6 @@ function Deposit(){
             bgcolor="light"
             txtcolor="dark"
             header="Balance"
-            status={status}
             body={balance}
           />
         </Col>

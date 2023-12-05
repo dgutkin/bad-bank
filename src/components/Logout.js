@@ -2,7 +2,7 @@
 import { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { UserContext, UserDispatchContext } from '../utils/context';
+import { UserContext, UserContextDispatch } from '../utils/context';
 
 import Button from 'react-bootstrap/Button';
 
@@ -11,7 +11,7 @@ function Logout() {
     const [auth, setAuth] = useState(false);
 
     const userCtx = useContext(UserContext);
-    const dispatch = useContext(UserDispatchContext);
+    const dispatch = useContext(UserContextDispatch);
 
     const navigate = useNavigate();
 
@@ -36,21 +36,11 @@ function Logout() {
     }
 
     return (
-        // <Card
-        //     bgcolor="dark"
-        //     header="Logout"
-        //     status=""
-        //     body={auth ? 
-        //     (<button className="btn-primary" onClick={handleLogout} href="#">
-        //         Logout
-        //     </button>) :
-        //     (
-        //         <p>You're not logged in</p>
-        //     )}
-        // />
+        
         <Button className="btn btn-light" onClick={handleLogout}>
             Logout
         </Button>
+        
     );
 
 }
