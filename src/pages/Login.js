@@ -1,9 +1,9 @@
 
-import { useState, useContext, useEffect } from 'react';
+import { useState, useContext} from 'react';
 import { useNavigate } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 
-import { UserData, UserContext, UserContextDispatch } from '../utils/context';
+import { UserData, UserContextDispatch } from '../utils/context';
 
 import Card from '../components/Card.js';
 
@@ -14,19 +14,11 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [status, setStatus] = useState("");
-  const [auth, setAuth] = useState(false);
 
   const navigate = useNavigate();
 
   const { users } = useContext(UserData);
-  const userCtx = useContext(UserContext);
   const dispatch = useContext(UserContextDispatch);
-
-  useEffect(() => {
-
-    setAuth(userCtx.auth)
-
-  }, [userCtx]);
 
   function validate(field, label) {
     if (!field) {
@@ -50,7 +42,6 @@ function Login() {
     
     if (user.password === password) {
 
-      setAuth(true);
       const userDetails = {name: user.name, email: user.email, password: user.password, balance: user.balance, auth: true};
       
       dispatch({

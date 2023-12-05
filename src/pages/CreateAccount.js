@@ -28,7 +28,7 @@ function CreateAccount(){
         setStatus('Error: ' + label);
         setTimeout(() => setStatus(''), 3000);
         return false;
-      } else if ((label == 'email') && (!field.includes('@') || !field.includes('.com'))){
+      } else if ((label === 'email') && (!field.includes('@') || !field.includes('.com'))){
         setStatus('Error: ' + label);
         setTimeout(() => setStatus(''), 3000);
         return false;

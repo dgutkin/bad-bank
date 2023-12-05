@@ -12,7 +12,6 @@ import '../styles/Account.css';
 
 function Account(){
   
-  const [status, setStatus] = useState('');
   const [auth, setAuth] = useState(false);
   const [balance, setBalance] = useState(0);
 
@@ -23,7 +22,7 @@ function Account(){
     setAuth(userCtx.auth);
     setBalance(userCtx.balance);
     
-  }, []);
+  }, [userCtx]);
 
   return (
 
@@ -40,7 +39,6 @@ function Account(){
                 bgcolor="light"
                 txtcolor="dark"
                 header="Balance"
-                status={status}
                 body={balance}
               />
             </Col>

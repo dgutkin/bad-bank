@@ -26,7 +26,7 @@ function Deposit(){
     setAuth(userCtx.auth);
     setBalance(userCtx.balance);
     
-  }, []);
+  }, [userCtx]);
 
   const validate = (field, label) => {
 

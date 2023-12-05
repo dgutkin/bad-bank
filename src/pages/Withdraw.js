@@ -26,7 +26,7 @@ function Withdraw(){
     setAuth(userCtx.auth);
     setBalance(userCtx.balance);
     
-  }, []);
+  }, [userCtx]);
 
   const validate = (field, label) => {
     if (!field || field <= 0 || field > balance) {
