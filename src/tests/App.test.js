@@ -157,10 +157,10 @@ describe('The deposit page', () => {
 
     expect(screen.getByText("Balance")).toBeInTheDocument();
 
-    await userEvent.type(screen.getByPlaceholderText("Enter deposit"), "010");
+    await userEvent.type(screen.getByPlaceholderText("Enter deposit"), "010.00");
     await userEvent.click(screen.getByText("Confirm"));
 
-    expect(screen.getByText("10")).toBeInTheDocument();
+    expect(screen.getByText("$10.00")).toBeInTheDocument();
 
   });
 
@@ -223,10 +223,10 @@ describe('The withdraw page', () => {
 
     expect(screen.getByText("Balance")).toBeInTheDocument();
 
-    await userEvent.type(screen.getByPlaceholderText("Enter withdrawal"), "010");
+    await userEvent.type(screen.getByPlaceholderText("Enter withdrawal"), "010.00");
     await userEvent.click(screen.getByText("Confirm"));
 
-    expect(screen.getByText("0")).toBeInTheDocument();
+    expect(screen.getByText("$0.00")).toBeInTheDocument();
 
   });
 
