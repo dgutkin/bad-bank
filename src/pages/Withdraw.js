@@ -29,8 +29,8 @@ function Withdraw(){
   }, [userCtx]);
 
   const validate = (field, label) => {
-    if (!field || field <= 0 || field > balance) {
-      setStatus("invalid withdrawal");
+    if (!field || field <= 0 || field > balance || !/\d+\.\d\d/.test(field)) {
+      setStatus("invalid withdrawal, please input a number with two decimals");
       setTimeout(() => {return setStatus('');}, 3000);
       return false;
     }
@@ -40,6 +40,8 @@ function Withdraw(){
   const handleConfirm = () => {
 
     if (!validate(withdrawal, 'withdrawal')) return;
+    
+    alert(`Successful withdrawal for $${withdrawal}.`);
 
     setBalance(balance - Number(withdrawal));
 
@@ -68,7 +70,7 @@ function Withdraw(){
             bgcolor="light"
             txtcolor="dark"
             header="Balance"
-            body={balance}
+            body={'$' + balance.toFixed(2)}
           />
         </Col>
         <Col>

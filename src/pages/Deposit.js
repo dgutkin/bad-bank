@@ -30,8 +30,8 @@ function Deposit(){
 
   const validate = (field, label) => {
 
-    if (!field || field <= 0) {
-      setStatus("invalid deposit");
+    if (!field || field <= 0 || !/\d+\.\d\d/.test(field)) {
+      setStatus("invalid deposit, please input a number with two decimals");
       setTimeout(() => {return setStatus('');}, 3000);
       return false;
     }
@@ -42,6 +42,8 @@ function Deposit(){
   const handleConfirm = () => {
 
     if (!validate(deposit, 'deposit')) return;
+
+    alert(`Successful deposit for $${deposit}.`);
 
     setBalance(balance + Number(deposit));
 
@@ -71,7 +73,7 @@ function Deposit(){
             bgcolor="light"
             txtcolor="dark"
             header="Balance"
-            body={balance}
+            body={'$' + balance.toFixed(2)}
           />
         </Col>
         <Col>
@@ -82,7 +84,7 @@ function Deposit(){
             body={(
               <>
                 Deposit Amount<br/>
-                <input type="input" className="form-control" id="deposit" placeholder="Enter deposit" value={deposit} onChange={e => setDeposit(e.currentTarget.value)}/><br/>
+                <input type="input" pattern="\d+\.\d\d" className="form-control" id="deposit" placeholder="Enter deposit" value={deposit} onChange={e => setDeposit(e.currentTarget.value)}/><br/>
                 <button type="submit" className="btn btn-light" onClick={handleConfirm}>Confirm</button>
               </>)}
           />

@@ -32,6 +32,10 @@ function CreateAccount(){
         setStatus('Error: ' + label);
         setTimeout(() => setStatus(''), 3000);
         return false;
+      } else if ((label === 'password') && field.length < 8){
+        setStatus('Error:' + label + ' needs to be more than 8 characters.');
+        setTimeout(() => setStatus(''), 3000);
+        return false;
       }
       return true;
 

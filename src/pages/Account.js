@@ -39,7 +39,7 @@ function Account(){
                 bgcolor="light"
                 txtcolor="dark"
                 header="Balance"
-                body={balance}
+                body={'$' + balance.toFixed(2)}
               />
             </Col>
             <Col>
