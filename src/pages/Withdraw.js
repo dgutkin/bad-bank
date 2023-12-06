@@ -61,7 +61,7 @@ function Withdraw(){
 
   return (
     
-    <Container id="withdraw-container">
+    <Container fluid id="withdraw-container">
 
       {auth ? (
       <Row>

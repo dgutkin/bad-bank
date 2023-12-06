@@ -14,12 +14,10 @@ function SeeData() {
 
     <Container fluid id="see-data-container">
 
-        
           <p>
               {JSON.stringify(users)}
           </p>
         
-
     </Container>
   )
 }

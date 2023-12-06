@@ -65,7 +65,7 @@ function Deposit(){
 
   return (
     
-    <Container id="deposit-container">
+    <Container fluid id="deposit-container">
       {auth ? (
       <Row>
         <Col>
